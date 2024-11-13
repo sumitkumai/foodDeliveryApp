@@ -4,7 +4,7 @@ const MyOrder = () => {
   const [orderData, setOrderData] = useState([]);
 
   const fetchMyOrder = async () => {
-    await fetch('http://localhost:5000/api/myOrderData', {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/myOrderData`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

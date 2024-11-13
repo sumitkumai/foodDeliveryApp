@@ -11,7 +11,7 @@ const Signup = () => {
   const handlerSubmit = async(e)=>{
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/createuser",{
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/createuser`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
