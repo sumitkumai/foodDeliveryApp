@@ -9,7 +9,22 @@ dotenv.config({ path: './config.env' });
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+    'http://localhost:5173', // Local frontend
+    'https://food-delivery-app-ten-bay.vercel.app' // Production frontend (Vercel)
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true); // Allow request from allowed origins or no origin (e.g., Postman)
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
+
+
 app.use(express.json());
 
 app.use('/api',user);
